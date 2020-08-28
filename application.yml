@@ -1,0 +1,68 @@
+info:
+  id: ${spring.application.name}
+
+port:
+    code-task-app-admin: 9100
+    code-task-app-board: 9200
+    code-task-app-batch: 9300
+    code-task-sys-bootadmin: 10000
+
+#spring boot admin 설정
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES #fix
+---
+spring:
+  profiles: local
+  boot:
+    admin: #bootadmin 설정
+      client:
+        url: http://localhost:${port.code-task-sys-bootadmin}
+        instance:
+          name: Task Platform :${spring.application.name}
+          service-base-url: ${application.api.url}:${server.port}
+        username: admin
+        password: test
+        enabled: true
+
+logging:
+  level:
+    root: DEBUG
+    org.apache: WARN
+    org.apache.cxf: WARN
+    org.thymeleaf: WARN
+    org.springframework: WARN
+    org.springframework.web.client.RestTemplate: DEBUG
+    org.springframework.aop.interceptor.PerformanceMonitorInterceptor: TRACE
+    org.springframework.aop.interceptor.CustomizableTraceInterceptor: TRACE
+    org.hibernate: WARN
+    org.mybatis: DEBUG
+    com.netflix: WARN
+    springfox: WARN
+    com.zaxxer.hikari: WARN
+    zipkin2: WARN
+    io.lettuce: INFO
+    de.codecentric.boot.admin: WARN
+
+application:
+  api:
+    url: http://localhost
+  rest-template:
+    http-client-connection-pool:
+      max-total: 9000
+      default-max-per-route: 1000
+    request-config:
+      connection-request-timeout: 10000             # 서버에 소켓 연결을 맺을 때의 타임아웃
+      connect-timeout: 10000                         # ConnectionManager(커넥션풀)로부터 꺼내올 때의 타임아웃
+      socket-timeout: 600000                        # 요청/응답간의 타임아웃. 10분
+      read-timeout: 600000
+
+jasypt:
+  encryptor:
+    password: CodeTaskLocalJASYPT
