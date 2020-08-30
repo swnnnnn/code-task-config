@@ -5,7 +5,6 @@ port:
     code-task-app-admin: 9100
     code-task-app-board: 9200
     code-task-app-batch: 9300
-    code-task-sys-bootadmin: 10000
 
 #spring boot admin 설정
 management:
@@ -20,16 +19,6 @@ jasypt:
 ---
 spring:
   profiles: local
-  boot:
-    admin: #bootadmin 설정
-      client:
-        url: http://localhost:${port.code-task-sys-bootadmin}
-        instance:
-          name: Task Platform :${spring.application.name}
-          service-base-url: ${application.api.url}:${server.port}
-        username: admin
-        password: test
-        enabled: true
 
 logging:
   level:
@@ -48,7 +37,6 @@ logging:
     com.zaxxer.hikari: WARN
     zipkin2: WARN
     io.lettuce: INFO
-    de.codecentric.boot.admin: WARN
 
 application:
   api:
