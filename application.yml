@@ -31,7 +31,6 @@ logging:
     org.springframework.aop.interceptor.PerformanceMonitorInterceptor: TRACE
     org.springframework.aop.interceptor.CustomizableTraceInterceptor: TRACE
     org.hibernate: WARN
-    org.mybatis: DEBUG
     com.netflix: WARN
     springfox: WARN
     com.zaxxer.hikari: WARN
