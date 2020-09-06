@@ -46,7 +46,7 @@ application:
       default-max-per-route: 1000
     request-config:
       connection-request-timeout: 10000             # 서버에 소켓 연결을 맺을 때의 타임아웃
-      connect-timeout: 10000                         # ConnectionManager(커넥션풀)로부터 꺼내올 때의 타임아웃
+      connect-timeout: 10000                        # ConnectionManager(커넥션풀)로부터 꺼내올 때의 타임아웃
       socket-timeout: 600000                        # 요청/응답간의 타임아웃. 10분
       read-timeout: 600000
 
